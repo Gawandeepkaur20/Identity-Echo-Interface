@@ -1,10 +1,6 @@
 import streamlit as st
 from datetime import datetime
 
-# ==========================================================
-# PAGE CONFIGURATION
-# ==========================================================
-
 st.set_page_config(
     page_title="Identity Echo Interface",
     page_icon="📨",
@@ -12,9 +8,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==========================================================
-# CUSTOM CSS
-# ==========================================================
 
 st.markdown("""
 <style>
@@ -90,9 +83,7 @@ div[data-testid="stVerticalBlockBorderWrapper"]{
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================================
-# SIDEBAR
-# ==========================================================
+
 
 with st.sidebar:
 
@@ -140,9 +131,6 @@ with st.sidebar:
 
     st.caption("Version 1.0")
 
-    # ==========================================================
-# HEADER
-# ==========================================================
 
 left, center, right = st.columns([1,8,1])
 
@@ -158,9 +146,7 @@ with center:
             "Enter your identity and message below, then click **Transmit** to securely process your transmission."
         )
     st.markdown("<div style='margin-top:10px'></div>", unsafe_allow_html=True)
-# ==========================================================
-# TRANSMISSION DETAILS
-# ==========================================================
+
 
 left, center, right = st.columns([1,6,1])
 
@@ -187,15 +173,7 @@ with center:
             use_container_width=True
         )
 
-        # ==========================================================
-# PROCESS TRANSMISSION
-# ==========================================================
-
 if transmit:
-
-    # -------------------------------
-    # Validation
-    # -------------------------------
 
     if user_name.strip() == "":
 
@@ -207,9 +185,7 @@ if transmit:
 
     else:
 
-        # -------------------------------
-        # Message Analysis
-        # -------------------------------
+     
 
         character_count = len(user_message)
 
@@ -240,18 +216,11 @@ if transmit:
             "%d %B %Y | %I:%M %p"
         )
 
-        # -------------------------------
-        # Success Message
-        # -------------------------------
-
+     
         st.success(
             f"Transmission successful! Greetings, {user_name}. "
             f"We received your message: {user_message}"
         )
-
-        # -------------------------------
-        # Assignment Requirement
-        # -------------------------------
 
         st.info(
             f"System Check: Your message will consume approximately "
@@ -260,9 +229,7 @@ if transmit:
 
         st.divider()
 
-        # -------------------------------
-        # Analysis Dashboard
-        # -------------------------------
+      
 
         st.subheader("Message Analysis")
 
@@ -302,10 +269,7 @@ if transmit:
             f"{context_usage}% of 4096-token context window used."
         )
         st.divider()
-
-        # ==========================================================
-        # TRANSMISSION DETAILS
-        # ==========================================================
+    
 
         detail_col1, detail_col2 = st.columns(2)
 
@@ -332,9 +296,6 @@ if transmit:
 
         st.divider()
 
-        # ==========================================================
-        # TRANSMISSION LOG
-        # ==========================================================
 
         with st.expander("View Transmission Log"):
 
@@ -360,9 +321,6 @@ if transmit:
 
         st.divider()
 
-        # ==========================================================
-        # DOWNLOAD MESSAGE
-        # ==========================================================
 
         st.download_button(
             label="Download Message",
@@ -373,10 +331,6 @@ if transmit:
         )
 
         st.divider()
-
-        # ==========================================================
-        # SYSTEM INFORMATION
-        # ==========================================================
 
         st.subheader("System Information")
 
@@ -393,9 +347,6 @@ if transmit:
 
        
 
-# ==========================================================
-# FOOTER
-# ==========================================================
 
 st.divider()
 
