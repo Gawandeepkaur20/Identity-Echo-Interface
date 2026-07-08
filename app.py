@@ -1,251 +1,201 @@
 import streamlit as st
 from datetime import datetime
 
+# ==========================================================
+# PAGE CONFIGURATION
+# ==========================================================
+
 st.set_page_config(
     page_title="Identity Echo Interface",
     page_icon="📨",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
+
+# ==========================================================
+# CUSTOM CSS
+# ==========================================================
 
 st.markdown("""
 <style>
 
-/* Main Page */
+/* Main Container */
 .block-container{
     padding-top:2rem;
     padding-bottom:2rem;
-    padding-left:4rem;
-    padding-right:4rem;
-}
-
-/* Cards */
-
-.card{
-    background:#ffffff;
-    padding:25px;
-    border-radius:18px;
-    border:1px solid #E5E7EB;
-    box-shadow:0 8px 24px rgba(0,0,0,.06);
-}
-
-/* Header */
-
-.header {
-    background: linear-gradient(
-        135deg,
-    );
-
-    color: white;
-
-    padding: 30px;
-
-    border-radius: 20px;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.20);
-}
-
-.header h1{
-    margin:0;
-    font-size:40px;
-}
-
-.header p{
-    margin-top:8px;
-    font-size:17px;
-    opacity:.95;
-}
-
-/* Status Badge */
-
-.badge{
-    background:rgba(255,255,255,.2);
-    padding:8px 18px;
-    border-radius:30px;
-    float:right;
-    font-size:14px;
+    padding-left:2rem;
+    padding-right:2rem;
 }
 
 /* Sidebar */
-
 section[data-testid="stSidebar"]{
-    border-right:1px solid #E5E7EB;
-}
-
-/* Metric Cards */
-
-.metric-card{
-    background:#F8FAFC;
-    border:1px solid #E5E7EB;
-    border-radius:14px;
-    padding:18px;
-    text-align:center;
+    border-right:1px solid #d1d5db;
 }
 
 /* Button */
-
-.stButton button{
+.stButton > button{
 
     width:100%;
-    height:50px;
+
+    height:52px;
+
     border-radius:12px;
-    font-weight:600;
-    font-size:16px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    border:none;
+
+    transition:.25s;
+
 }
 
-/* Remove top padding */
+.stButton > button:hover{
 
-h1,h2,h3{
-    padding-top:0px;
+    transform:translateY(-2px);
+
 }
 
+div[data-testid="stVerticalBlockBorderWrapper"]{
+
+    border-radius:20px !important;
+border-top:4px solid #2563EB !important;
+    border:1px solid rgba(120,120,120,.15) !important;
+
+    padding:20px !important;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+    background:rgba(255,255,255,.02);
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.block-container{
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-top:1rem;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]{
+    padding:16px !important;
+}
+
+}
+}
 </style>
 """, unsafe_allow_html=True)
+
+# ==========================================================
+# SIDEBAR
+# ==========================================================
 
 with st.sidebar:
 
     st.title("Identity Echo Interface")
+
     st.caption("Secure Communication Portal")
 
     st.divider()
 
     st.subheader("Assignment")
 
-    st.markdown("""
-**Virtual Summer Internship 2026**
+    st.write("Virtual Summer Internship 2026")
 
-**Track:** AI Builder
+    st.write("AI Builder Track")
 
-**Framework:** Streamlit
-""")
+    st.write("Framework: Streamlit")
 
     st.divider()
 
-    st.subheader("Features")
+    st.subheader("Core Features")
 
-    st.markdown("""
-✔ User Input Collection
+    st.write("• User Input")
 
-✔ Input Validation
+    st.write("• Input Validation")
 
-✔ Message Transmission
+    st.write("• Message Transmission")
 
-✔ Token Estimation
+    st.write("• Token Estimation")
 
-✔ Live Statistics
-
-✔ Context Window Analysis
-""")
+    st.write("• Message Analysis")
 
     st.divider()
 
-    st.subheader("System Status")
+    st.subheader("System")
 
     st.success("Ready")
 
     st.metric(
-        label="Context Window",
-        value="4096",
-        delta="Tokens"
+        "Context Window",
+        "4096",
+        "Tokens"
     )
 
     st.divider()
 
     st.caption("Version 1.0")
 
-st.markdown("""
-<div class="header">
+    # ==========================================================
+# HEADER
+# ==========================================================
 
-<div class="badge">
-Session Active
-</div>
+left, center, right = st.columns([1,8,1])
 
-<h1>Identity Echo Interface</h1>
+with center:
 
-<p>
-Secure Communication Portal built using Streamlit.
-Enter your identity and message to begin transmission.
-</p>
+    with st.container(border=True):
 
-</div>
-""", unsafe_allow_html=True)
+        st.title("Identity Echo Interface")
 
-left, right = st.columns([2,1], gap="large")
+        st.caption("Secure Communication Portal")
 
-with left:
+        st.write(
+            "Enter your identity and message below, then click **Transmit** to securely process your transmission."
+        )
+    st.markdown("<div style='margin-top:10px'></div>", unsafe_allow_html=True)
+# ==========================================================
+# TRANSMISSION DETAILS
+# ==========================================================
 
-    st.markdown("## Transmission Details")
+left, center, right = st.columns([1,6,1])
 
-    user_name = st.text_input(
-        "Name",
-        placeholder="Enter your full name"
-    )
+with center:
 
-    user_message = st.text_area(
-        "Message",
-        height=170,
-        placeholder="Type your message..."
-    )
+    with st.container(border=True):
 
-    transmit = st.button(
-        "Transmit Message",
-        use_container_width=True
-    )
+        st.subheader("Transmission Details")
 
-with right:
+        user_name = st.text_input(
+            "Name",
+            placeholder="Enter your full name"
+        )
 
-    st.markdown("## Live Statistics")
+        user_message = st.text_input(
+            "Message",
+            placeholder="Type your message"
+        )
 
-    characters = len(user_message)
+        st.write("")
 
-    words = len(user_message.split())
+        transmit = st.button(
+            "Transmit",
+            use_container_width=True
+        )
 
-    tokens = round(characters / 4,2)
-
-    context_window = 4096
-
-    usage = (tokens/context_window)*100
-
-    st.metric(
-        "Characters",
-        characters
-    )
-
-    st.metric(
-        "Words",
-        words
-    )
-
-    st.metric(
-        "Estimated Tokens",
-        tokens
-    )
-
-    if usage < 25:
-        status = "Safe"
-
-    elif usage < 50:
-        status = "Moderate"
-
-    elif usage < 75:
-        status = "High"
-
-    else:
-        status = "Critical"
-
-    st.metric(
-        "Context Status",
-        status
-    )
-
-    st.write("Context Window Usage")
-
-    st.progress(min(usage/100,1.0))
-
-    st.caption(f"{usage:.2f}% of 4096-token context window")
+        # ==========================================================
+# PROCESS TRANSMISSION
+# ==========================================================
 
 if transmit:
+
+    # -------------------------------
+    # Validation
+    # -------------------------------
 
     if user_name.strip() == "":
 
@@ -257,124 +207,198 @@ if transmit:
 
     else:
 
-        current_time = datetime.now().strftime("%d %B %Y | %I:%M %p")
+        # -------------------------------
+        # Message Analysis
+        # -------------------------------
 
-        st.markdown("<br>", unsafe_allow_html=True)
+        character_count = len(user_message)
 
-        st.markdown("## Transmission Status")
+        word_count = len(user_message.split())
 
-        success_col1, success_col2 = st.columns([3,1])
+        token_count = round(character_count / 4, 2)
 
-        with success_col1:
+        context_window = 4096
 
-            st.success(
-                f"""
-Transmission successful!
+        context_usage = round(
+            (token_count / context_window) * 100,
+            2
+        )
 
-Greetings, **{user_name}**
+        if context_usage < 25:
+            context_status = "Safe"
 
-We received your message successfully.
-"""
-            )
+        elif context_usage < 50:
+            context_status = "Moderate"
 
-        with success_col2:
+        elif context_usage < 75:
+            context_status = "High"
 
-            st.metric(
-                "Estimated Tokens",
-                tokens
-            )
+        else:
+            context_status = "Critical"
+
+        transmission_time = datetime.now().strftime(
+            "%d %B %Y | %I:%M %p"
+        )
+
+        # -------------------------------
+        # Success Message
+        # -------------------------------
+
+        st.success(
+            f"Transmission successful! Greetings, {user_name}. "
+            f"We received your message: {user_message}"
+        )
+
+        # -------------------------------
+        # Assignment Requirement
+        # -------------------------------
 
         st.info(
-            f"System Check: Your message will consume approximately **{tokens} tokens** from our context window."
+            f"System Check: Your message will consume approximately "
+            f"{token_count} tokens from our context window."
         )
-        
+
         st.divider()
-        st.balloons()
 
-        st.markdown("## Transmission Summary")
+        # -------------------------------
+        # Analysis Dashboard
+        # -------------------------------
 
-        summary1, summary2, summary3 = st.columns(3)
+        st.subheader("Message Analysis")
 
-        with summary1:
+        metric1, metric2, metric3, metric4 = st.columns(4)
 
+        with metric1:
             st.metric(
                 "Characters",
-                characters
+                character_count
             )
 
-        with summary2:
-
+        with metric2:
             st.metric(
                 "Words",
-                words
+                word_count
             )
 
-        with summary3:
-
+        with metric3:
             st.metric(
-                "Context Usage",
-                f"{usage:.2f}%"
+                "Estimated Tokens",
+                token_count
             )
 
+        with metric4:
+            st.metric(
+                "Context Status",
+                context_status
+            )
+
+        st.write("Context Window Usage")
+
+        st.progress(
+            min(context_usage / 100, 1.0)
+        )
+
+        st.caption(
+            f"{context_usage}% of 4096-token context window used."
+        )
         st.divider()
 
-        left_card, right_card = st.columns(2)
+        # ==========================================================
+        # TRANSMISSION DETAILS
+        # ==========================================================
 
-        with left_card:
+        detail_col1, detail_col2 = st.columns(2)
 
-            st.markdown("### Message Preview")
+        with detail_col1:
+
+            st.subheader("Transmission Details")
+
+            st.write(f"**Operator:** {user_name}")
+
+            st.write(f"**Submission Time:**")
+
+            st.write(transmission_time)
+
+            st.write(f"**Context Status:** {context_status}")
+
+        with detail_col2:
+
+            st.subheader("Message Preview")
 
             st.code(
                 user_message,
                 language=None
             )
 
-        with right_card:
-
-            st.markdown("### Transmission Details")
-
-            st.write(f"**Operator**")
-
-            st.write(user_name)
-
-            st.write("**Submission Time**")
-
-            st.write(current_time)
-
-            st.write("**Context Status**")
-
-            if usage < 25:
-                st.success("Safe")
-
-            elif usage < 50:
-                st.info("Moderate")
-
-            elif usage < 75:
-                st.warning("High")
-
-            else:
-                st.error("Critical")
-
         st.divider()
+
+        # ==========================================================
+        # TRANSMISSION LOG
+        # ==========================================================
 
         with st.expander("View Transmission Log"):
 
             st.write("Transmission completed successfully.")
 
+            st.write("---")
+
             st.write(f"Operator : {user_name}")
 
-            st.write(f"Characters : {characters}")
+            st.write(f"Message : {user_message}")
 
-            st.write(f"Words : {words}")
+            st.write(f"Characters : {character_count}")
 
-            st.write(f"Estimated Tokens : {tokens}")
+            st.write(f"Words : {word_count}")
 
-            st.write(f"Context Usage : {usage:.2f}%")
+            st.write(f"Estimated Tokens : {token_count}")
 
-            st.write(f"Submitted : {current_time}")
+            st.write(f"Context Usage : {context_usage}%")
+
+            st.write(f"Context Status : {context_status}")
+
+            st.write(f"Submitted : {transmission_time}")
 
         st.divider()
 
-        st.caption(
-            "Developed for MirAI School of Technology • Virtual Summer Internship 2026"
+        # ==========================================================
+        # DOWNLOAD MESSAGE
+        # ==========================================================
+
+        st.download_button(
+            label="Download Message",
+            data=user_message,
+            file_name="Message.txt",
+            mime="text/plain",
+            use_container_width=True
         )
+
+        st.divider()
+
+        # ==========================================================
+        # SYSTEM INFORMATION
+        # ==========================================================
+
+        st.subheader("System Information")
+
+        info1, info2, info3 = st.columns(3)
+
+        with info1:
+            st.metric("Framework", "Streamlit")
+
+        with info2:
+            st.metric("Language", "Python")
+
+        with info3:
+            st.metric("Context Window", "4096")
+
+       
+
+# ==========================================================
+# FOOTER
+# ==========================================================
+
+st.divider()
+
+st.caption(
+    "Developed for MirAI School of Technology • Virtual Summer Internship 2026 • AI Builder Track"
+)
