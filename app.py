@@ -1,19 +1,11 @@
 import streamlit as st
 from datetime import datetime
 
-# ---------------------------------------------------
-# Page Configuration
-# ---------------------------------------------------
-
 st.set_page_config(
     page_title="Identity Echo Interface",
     page_icon="📨",
     layout="wide"
 )
-
-# ---------------------------------------------------
-# Custom CSS
-# ---------------------------------------------------
 
 st.markdown("""
 <style>
@@ -41,9 +33,6 @@ st.markdown("""
 .header {
     background: linear-gradient(
         135deg,
-        #0f0f0f 0%,
-        #2b2b2b 50%,
-        #6b7280 100%
     );
 
     color: white;
@@ -114,20 +103,12 @@ h1,h2,h3{
 </style>
 """, unsafe_allow_html=True)
 
-# ==================================================
-# Sidebar
-# ==================================================
-
 with st.sidebar:
 
     st.title("Identity Echo Interface")
     st.caption("Secure Communication Portal")
 
     st.divider()
-
-    # ----------------------------
-    # Assignment
-    # ----------------------------
 
     st.subheader("Assignment")
 
@@ -140,10 +121,6 @@ with st.sidebar:
 """)
 
     st.divider()
-
-    # ----------------------------
-    # Features
-    # ----------------------------
 
     st.subheader("Features")
 
@@ -163,10 +140,6 @@ with st.sidebar:
 
     st.divider()
 
-    # ----------------------------
-    # System Status
-    # ----------------------------
-
     st.subheader("System Status")
 
     st.success("Ready")
@@ -179,14 +152,7 @@ with st.sidebar:
 
     st.divider()
 
-    # ----------------------------
-    # Version
-    # ----------------------------
-
     st.caption("Version 1.0")
-# ---------------------------------------------------
-# Header
-# ---------------------------------------------------
 
 st.markdown("""
 <div class="header">
@@ -205,15 +171,7 @@ Enter your identity and message to begin transmission.
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------
-# Two Column Layout
-# ---------------------------------------------------
-
 left, right = st.columns([2,1], gap="large")
-
-# ---------------------------------------------------
-# LEFT COLUMN
-# ---------------------------------------------------
 
 with left:
 
@@ -234,10 +192,6 @@ with left:
         "Transmit Message",
         use_container_width=True
     )
-
-# ---------------------------------------------------
-# RIGHT COLUMN
-# ---------------------------------------------------
 
 with right:
 
@@ -291,25 +245,15 @@ with right:
 
     st.caption(f"{usage:.2f}% of 4096-token context window")
 
-    # ---------------------------------------------------
-# Validation & Processing
-# ---------------------------------------------------
-
 if transmit:
-
-    # ---------- Name Validation ----------
 
     if user_name.strip() == "":
 
         st.error("Please provide your name.")
 
-    # ---------- Message Validation ----------
-
     elif user_message.strip() == "":
 
         st.warning("Please type a message to transmit.")
-
-    # ---------- Success ----------
 
     else:
 
@@ -340,17 +284,12 @@ We received your message successfully.
                 tokens
             )
 
-        # -------------------------------------
-
         st.info(
             f"System Check: Your message will consume approximately **{tokens} tokens** from our context window."
         )
         
         st.divider()
         st.balloons()
-        # -------------------------------------------------
-        # Transmission Summary
-        # -------------------------------------------------
 
         st.markdown("## Transmission Summary")
 
@@ -379,13 +318,7 @@ We received your message successfully.
 
         st.divider()
 
-        # -------------------------------------------------
-        # Preview + Details
-        # -------------------------------------------------
-
         left_card, right_card = st.columns(2)
-
-        # ----------------------------
 
         with left_card:
 
@@ -395,8 +328,6 @@ We received your message successfully.
                 user_message,
                 language=None
             )
-
-        # ----------------------------
 
         with right_card:
 
@@ -426,10 +357,6 @@ We received your message successfully.
 
         st.divider()
 
-        # -------------------------------------------------
-        # Transmission Log
-        # -------------------------------------------------
-
         with st.expander("View Transmission Log"):
 
             st.write("Transmission completed successfully.")
@@ -447,10 +374,6 @@ We received your message successfully.
             st.write(f"Submitted : {current_time}")
 
         st.divider()
-
-        # -------------------------------------------------
-        # Footer
-        # -------------------------------------------------
 
         st.caption(
             "Developed for MirAI School of Technology • Virtual Summer Internship 2026"
